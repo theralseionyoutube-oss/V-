@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V+ — The Ultimate Minecraft Client</title>
+  <meta name="description" content="V+ is the most advanced Minecraft client ever engineered. Combat, DonutSMP, visuals and movement — all handled by one client.">
+  <meta name="theme-color" content="#0b0a0a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237e2ed6'/%3E%3Cpath d='M16 20l10 26h12l10-26' fill='none' stroke='%23fff' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M46 12v12M40 18h12' stroke='%23c9a9f4' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <div class="page-glow" aria-hidden="true"></div>
+
+  <!-- SVG icon sprite -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="7" rx="2"/><rect x="17" y="13" width="4" height="7" rx="2"/><path d="M19 20a3 3 0 0 1-3 2h-2"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16M13 5l7 7-7 7"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.1-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9 2.9-6z"/></symbol>
+    <symbol id="i-discord" viewBox="0 0 24 24"><path d="M8.5 6.8A15 15 0 0 0 5 8.6C2.9 12 2.6 15.3 3.5 18a15 15 0 0 0 4.3 1.6l.9-1.5M15.5 6.8A15 15 0 0 1 19 8.6c2.1 3.4 2.4 6.7 1.5 9.4a15 15 0 0 1-4.3 1.6l-.9-1.5"/><circle cx="9.2" cy="13.5" r="1.4"/><circle cx="14.8" cy="13.5" r="1.4"/><path d="M8.6 17.2c2.2.8 4.6.8 6.8 0"/></symbol>
+    <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M14 3v10.5a4.5 4.5 0 1 1-4.5-4.5"/><path d="M14 5.5A6.5 6.5 0 0 0 20.5 11"/></symbol>
+    <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5l4.5 2.5-4.5 2.5v-5z"/></symbol>
+    <symbol id="i-sword" viewBox="0 0 24 24"><path d="M14.5 4.5L20 3l-1.5 5.5-8 8"/><path d="M18 3l-9.5 9.5"/><path d="M8.5 12.5l3 3"/><path d="M4 20l4.5-4.5"/><path d="M6 15l3 3"/></symbol>
+    <symbol id="i-pickaxe" viewBox="0 0 24 24"><path d="M4 20L17 7"/><path d="M11 4h9v9"/><path d="M13 5a8 8 0 0 0-8 8"/><path d="M7 16l1 1"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-crystal" viewBox="0 0 24 24"><path d="M12 2.5l6 6.5-6 12.5L6 9l6-6.5z"/><path d="M6 9h12M12 2.5V21.5"/></symbol>
+    <symbol id="i-totem" viewBox="0 0 24 24"><path d="M12 2.5l7 3v6c0 4.4-3 8.2-7 10-4-1.8-7-5.6-7-10v-6l7-3z"/><path d="M12 7v7M8.5 10.5h7"/></symbol>
+    <symbol id="i-hammer" viewBox="0 0 24 24"><path d="M14 5l5 5"/><path d="M4 20l7.5-7.5"/><path d="M12 3l9 9-3 3-9-9 3-3z"/></symbol>
+    <symbol id="i-donut" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M6 7.5c1.2 1 1.7 2 1.8 3.2"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20S3.5 15 3.5 8.8A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 8.5 1.8C20.5 15 12 20 12 20z"/><path d="M7 11h2l1.2-2 1.6 4L13 11h4"/></symbol>
+    <symbol id="i-blocks" viewBox="0 0 24 24"><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><rect x="8" y="3" width="8" height="8" rx="1"/></symbol>
+    <symbol id="i-gem" viewBox="0 0 24 24"><path d="M7 3h10l4 6-9 12L3 9l4-6z"/><path d="M3 9h18M9.5 9L12 21l2.5-12L12 3"/></symbol>
+    <symbol id="i-tree" viewBox="0 0 24 24"><path d="M12 2.5l6 8h-3.5l5 7H13v4h-2v-4H4.5l5-7H6l6-8z"/></symbol>
+    <symbol id="i-wings" viewBox="0 0 24 24"><path d="M12 20V8"/><path d="M12 8C9 5 5 4.5 2.5 5.5c.5 4 3 7 9.5 7"/><path d="M12 8c3-3 7-3.5 9.5-2.5-.5 4-3 7-9.5 7"/></symbol>
+    <symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12l6-6"/><circle cx="12" cy="12" r="1.2"/></symbol>
+    <symbol id="i-anchor" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><path d="M12 7.5V21"/><path d="M5 12H3a9 9 0 0 0 18 0h-2"/><path d="M8 10h8"/></symbol>
+    <symbol id="i-portal" viewBox="0 0 24 24"><rect x="3.5" y="3" width="17" height="18" rx="8.5"/><ellipse cx="12" cy="12" rx="4.5" ry="7"/></symbol>
+    <symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 7l4.5 4L12 4l4.5 7L21 7v11H3V7z"/><path d="M3 18h18"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 2l2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2L12 2z"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c.5-4 3.5-6.5 8-6.5s7.5 2.5 8 6.5"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 20h16"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  </svg>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="V+ home">
+        <span class="brand-mark" aria-hidden="true">V<sup>+</sup></span>
+        <span class="brand-word">V<span class="plus" aria-hidden="true"></span></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#bots">Bots</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#guides">Guides</a>
+        <a href="#socials">Community</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="link-login" href="#pricing">Log in</a>
+        <a class="btn btn-primary btn-sm" href="#pricing">Get started</a>
+        <a class="btn btn-secondary btn-sm header-dashboard" href="#pricing">Dashboard</a>
+      </div>
+
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="icon"><use href="#i-menu"/></svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile">
+        <a href="#features">Features</a>
+        <a href="#bots">Bots</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#guides">Guides</a>
+        <a href="#socials">Community</a>
+      </nav>
+      <div class="mobile-menu-actions">
+        <a class="btn btn-primary" href="#pricing">Get started</a>
+        <a class="btn btn-secondary" href="#pricing">Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-watermark" aria-hidden="true">
+        <svg viewBox="0 0 560 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 26L180 372h100L436 26" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/>
+          <path d="M492 54v100M442 104h100" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="hero-aura" aria-hidden="true"></div>
+
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="hero-badge"><span class="dot"></span> V2 · New update out now</span>
+
+          <h1 id="hero-title">The <em>ULTIMATE</em><br><span class="line">Minecraft Client</span></h1>
+          <p class="hero-sub">The most advanced Minecraft client ever engineered.</p>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary btn-lg btn-glance" href="#pricing">Get started from $14.99</a>
+            <a class="btn btn-secondary btn-lg" href="#features">
+              View features
+              <svg class="icon"><use href="#i-arrow"/></svg>
+            </a>
+          </div>
+
+          <div class="rating">
+            <span class="tp-stars" aria-hidden="true">
+              <span class="tp-star"><svg class="icon"><use href="#i-star"/></svg></span>
+              <span class="tp-star"><svg class="icon"><use href="#i-star"/></svg></span>
+              <span class="tp-star"><svg class="icon"><use href="#i-star"/></svg></span>
+              <span class="tp-star"><svg class="icon"><use href="#i-star"/></svg></span>
+              <span class="tp-star is-partial"><svg class="icon"><use href="#i-star"/></svg></span>
+            </span>
+            <span class="rating-text"><strong>4.6</strong> on <span class="tp-name">Trustpilot</span></span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="gui-window gui-hero" aria-hidden="true">
+            <div class="gui-topbar">
+              <span class="gui-app">V<span>+</span></span>
+              <span class="gui-greeting">Hello, <b>VPLUS.GG</b></span>
+              <span class="gui-clock">04:56</span>
+              <span class="gui-topicons">
+                <svg class="icon"><use href="#i-user"/></svg>
+                <svg class="icon"><use href="#i-grid"/></svg>
+              </span>
+            </div>
+            <div class="gui-layout">
+              <aside class="gui-side">
+                <div class="gui-wordmark">V<span>+</span></div>
+                <div class="gui-side-label">Modules</div>
+                <ul class="gui-side-list">
+                  <li class="is-active"><span class="gi"><svg class="icon"><use href="#i-sword"/></svg></span>Combat</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-wings"/></svg></span>Movement</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-donut"/></svg></span>DonutSMP</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-eye"/></svg></span>Visuals</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-sparkle"/></svg></span>Misc</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-radar"/></svg></span>Network</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-crown"/></svg></span>Bots</li>
+                </ul>
+                <div class="gui-side-label">General</div>
+                <ul class="gui-side-list">
+                  <li><span class="gi"><svg class="icon"><use href="#i-grid"/></svg></span>Settings</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-check"/></svg></span>Configs</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-sparkle"/></svg></span>Theme</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-user"/></svg></span>Socials</li>
+                </ul>
+                <div class="gui-profile">
+                  <span class="gui-avatar">V+</span>
+                  <span>VPLUS.GG<small>Test build</small></span>
+                </div>
+              </aside>
+
+              <div class="gui-mainpane">
+                <div class="gui-search"><svg class="icon"><use href="#i-search"/></svg><span>Search modules...</span><kbd>⌘K</kbd></div>
+                <div class="gui-cols">
+                  <div class="gui-col">
+                    <div class="gui-mod"><span>Auto Inventory Totems <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Auto Crystal <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Auto Totem <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Aim Assist <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle is-on"></span></div>
+                    <div class="gui-mod"><span>Reach <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>AutoCart <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle is-on"></span></div>
+                    <div class="gui-mod"><span>Trigger Bot <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Trident Assist <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                  </div>
+                  <div class="gui-col">
+                    <div class="gui-mod"><span>Anchor Macro <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Fight Recorder <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle is-on"></span></div>
+                    <div class="gui-mod"><span>Crystal Optimizer <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Silent Aim <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle is-on"></span></div>
+                    <div class="gui-mod"><span>AutoTrap <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>AutoClicker <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Hit Select <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Safe Anchor <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TRUST STRIP ================= -->
+    <section class="trust-strip" aria-label="Why V+">
+      <div class="container trust-inner">
+        <div class="trust-item">
+          <span class="trust-icon"><svg class="icon"><use href="#i-shield"/></svg></span>
+          <span>Undetectable</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon"><span class="live-dot"></span><svg class="icon"><use href="#i-bolt"/></svg></span>
+          <span>Instant delivery</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon"><svg class="icon"><use href="#i-refresh"/></svg></span>
+          <span>Weekly updates</span>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon"><span class="live-dot"></span><svg class="icon"><use href="#i-headset"/></svg></span>
+          <span>24/7 support</span>
+        </div>
+        <div class="trust-checkout">
+          <div class="trust-checkout-label">
+            <svg class="icon"><use href="#i-card"/></svg>
+            <span>Secure checkout</span>
+          </div>
+          <div class="pay-pills">
+            <span>Visa</span><span>Mastercard</span><span>PayPal</span><span>Crypto</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= GAMEMODES ================= -->
+    <section class="section gamemodes" id="features" aria-labelledby="gamemodes-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="pixel-title" id="gamemodes-title">Explore by gamemode.</h2>
+          <p class="section-sub">Pick a playstyle and see what's inside.</p>
+        </div>
+
+        <div class="gamemode-grid">
+          <article class="gamemode-card reveal" style="--d: 0ms">
+            <div class="gamemode-art art-combat" aria-hidden="true">
+              <span class="art-grid"></span>
+              <span class="art-block b1"></span><span class="art-block b2"></span><span class="art-block b3"></span>
+              <span class="art-icon"><svg class="icon"><use href="#i-sword"/></svg></span>
+              <span class="art-tag">PvP</span>
+            </div>
+            <div class="gamemode-body">
+              <h3>Combat</h3>
+              <p>Crystal, sword and mace fights, handled.</p>
+              <div class="chips">
+                <span class="chip chip-active">Safe Anchor</span>
+                <span class="chip">Auto Crystal</span>
+                <span class="chip">Aim Assist</span>
+                <span class="chip">Trigger Bot</span>
+                <span class="chip chip-more">+ more</span>
+              </div>
+              <a class="card-link" href="#bots">Explore Combat <svg class="icon"><use href="#i-arrow-up"/></svg></a>
+            </div>
+          </article>
+
+          <article class="gamemode-card reveal" style="--d: 90ms">
+            <div class="gamemode-art art-smp" aria-hidden="true">
+              <span class="art-grid"></span>
+              <span class="art-sun"></span>
+              <span class="art-hill h1"></span><span class="art-hill h2"></span>
+              <span class="art-icon"><svg class="icon"><use href="#i-pickaxe"/></svg></span>
+              <span class="art-tag">Utility</span>
+            </div>
+            <div class="gamemode-body">
+              <h3>DonutSMP</h3>
+              <p>Building, mining and scouting on autopilot.</p>
+              <div class="chips">
+                <span class="chip chip-active">Deep Player Finder</span>
+                <span class="chip">Auto Builder</span>
+                <span class="chip">Auto Area Miner</span>
+                <span class="chip">Chunk Finder</span>
+                <span class="chip chip-more">+ more</span>
+              </div>
+              <a class="card-link" href="#bots">Explore DonutSMP <svg class="icon"><use href="#i-arrow-up"/></svg></a>
+            </div>
+          </article>
+
+          <article class="gamemode-card reveal" style="--d: 180ms">
+            <div class="gamemode-art art-visuals" aria-hidden="true">
+              <span class="art-grid"></span>
+              <span class="art-orb"></span>
+              <span class="art-spark s1"></span><span class="art-spark s2"></span><span class="art-spark s3"></span>
+              <span class="art-icon"><svg class="icon"><use href="#i-eye"/></svg></span>
+              <span class="art-tag">Visuals</span>
+            </div>
+            <div class="gamemode-body">
+              <h3>Visuals &amp; Movement</h3>
+              <p>See more. Move freely.</p>
+              <div class="chips">
+                <span class="chip chip-active">CustomSky</span>
+                <span class="chip">Auto Spear</span>
+                <span class="chip">Pearl Prediction</span>
+                <span class="chip">Player ESP</span>
+                <span class="chip chip-more">+ more</span>
+              </div>
+              <a class="card-link" href="#bots">Explore Visuals &amp; Movement <svg class="icon"><use href="#i-arrow-up"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BOTS ================= -->
+    <section class="section bots" id="bots" aria-labelledby="bots-title">
+      <div class="bots-bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="pixel-title" id="bots-title">Meet the bots.</h2>
+          <p class="section-sub"><strong>Six</strong> that fight for you. <strong>Eight</strong> that work for you.</p>
+        </div>
+
+        <div class="bots-grid reveal">
+          <div class="bots-col bots-col-pvp">
+            <div class="bots-label">PvP</div>
+            <div class="bots-list" role="tablist" aria-label="PvP bots">
+              <button class="bot-row is-active" type="button" role="tab" aria-selected="true"
+                data-name="Crystal PvP" data-tag="PvP" data-icon="i-crystal"
+                data-desc="Fights crystal PvP for you, start to finish."
+                data-holds="End Crystal, Totem of Undying">
+                <span class="bot-row-text"><strong>Crystal PvP</strong><small>Crystal fights, start to finish.</small></span>
+                <span class="bot-icon"><svg class="icon"><use href="#i-crystal"/></svg></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="Sword PvP" data-tag="PvP" data-icon="i-sword"
+                data-desc="Perfect W-taps and strafes."
+                data-holds="Netherite Sword, Golden Apple">
+                <span class="bot-row-text"><strong>Sword PvP</strong><small>Perfect W-taps and strafes.</small></span>
+                <span class="bot-icon"><svg class="icon"><use href="#i-sword"/></svg></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="Mace PvP" data-tag="PvP" data-icon="i-hammer"
+                data-desc="Mace fights for SMP servers."
+                data-holds="Mace, Wind Charge">
+                <span class="bot-row-text"><strong>Mace PvP</strong><small>Mace fights for SMP servers.</small></span>
+                <span class="bot-icon"><svg class="icon"><use href="#i-hammer"/></svg></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="DonutQUE" data-tag="PvP" data-icon="i-donut" data-new="true"
+                data-desc="Queues /rtpq, banks the loot."
+                data-holds="Ender Pearl, Shulker Box">
+                <span class="bot-row-text"><strong>DonutQUE <span class="mini-new">New</span></strong><small>Queues /rtpq, banks the loot.</small></span>
+                <span class="bot-icon"><svg class="icon"><use href="#i-donut"/></svg></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="UHC PvP" data-tag="PvP" data-icon="i-heart" data-new="true"
+                data-desc="Traps, healing and bows."
+                data-holds="Golden Apple, Bow">
+                <span class="bot-row-text"><strong>UHC PvP <span class="mini-new">New</span></strong><small>Traps, healing and bows.</small></span>
+                <span class="bot-icon"><svg class="icon"><use href="#i-heart"/></svg></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="SMP PvP" data-tag="PvP" data-icon="i-shield" data-new="true"
+                data-desc="DiaSMP PvP, full utility kit."
+                data-holds="Shield, Totem of Undying">
+                <span class="bot-row-text"><strong>SMP PvP <span class="mini-new">New</span></strong><small>DiaSMP PvP, full utility kit.</small></span>
+                <span class="bot-icon"><svg class="icon"><use href="#i-shield"/></svg></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="bot-stage">
+            <div class="bot-beam" aria-hidden="true"></div>
+            <div class="bot-stage-card" id="bot-stage-card">
+              <div class="bot-stage-icon"><svg class="icon"><use href="#i-crystal"/></svg></div>
+              <span class="bot-tag" id="bot-tag">PvP</span>
+              <h3 id="bot-name">Crystal PvP</h3>
+              <p id="bot-desc">Fights crystal PvP for you, start to finish.</p>
+              <div class="bot-holds">
+                <span class="bot-holds-label">Holds</span>
+                <span class="bot-hold"><svg class="icon"><use href="#i-crystal"/></svg><span id="hold-1">End Crystal</span></span>
+                <span class="bot-hold-dot">·</span>
+                <span class="bot-hold"><svg class="icon"><use href="#i-totem"/></svg><span id="hold-2">Totem of Undying</span></span>
+              </div>
+            </div>
+            <div class="bot-stage-floor" aria-hidden="true"></div>
+          </div>
+
+          <div class="bots-col bots-col-util">
+            <div class="bots-label">Utility</div>
+            <div class="bots-list" role="tablist" aria-label="Utility bots">
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="Auto Builder" data-tag="Utility" data-icon="i-blocks"
+                data-desc="Builds schematics block by block."
+                data-holds="Shulker Box, Scaffolding">
+                <span class="bot-icon"><svg class="icon"><use href="#i-blocks"/></svg></span>
+                <span class="bot-row-text"><strong>Auto Builder</strong><small>Builds schematics block by block.</small></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="Area Miner" data-tag="Utility" data-icon="i-pickaxe"
+                data-desc="Mines out the area you pick."
+                data-holds="Netherite Pickaxe, Shulker Box">
+                <span class="bot-icon"><svg class="icon"><use href="#i-pickaxe"/></svg></span>
+                <span class="bot-row-text"><strong>Area Miner</strong><small>Mines out the area you pick.</small></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="Auto Ore Miner" data-tag="Utility" data-icon="i-gem" data-new="true"
+                data-desc="Mines your ores on safe routes."
+                data-holds="Diamond Pickaxe, Ender Chest">
+                <span class="bot-icon"><svg class="icon"><use href="#i-gem"/></svg></span>
+                <span class="bot-row-text"><strong>Auto Ore Miner <span class="mini-new">New</span></strong><small>Mines your ores on safe routes.</small></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="Tree Farmer" data-tag="Utility" data-icon="i-tree" data-new="true"
+                data-desc="Plants, chops and sells the wood."
+                data-holds="Axe, Sapling">
+                <span class="bot-icon"><svg class="icon"><use href="#i-tree"/></svg></span>
+                <span class="bot-row-text"><strong>Tree Farmer <span class="mini-new">New</span></strong><small>Plants, chops and sells the wood.</small></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="Elytra Pilot" data-tag="Utility" data-icon="i-wings"
+                data-desc="Flies you to your coords."
+                data-holds="Elytra, Firework Rocket">
+                <span class="bot-icon"><svg class="icon"><use href="#i-wings"/></svg></span>
+                <span class="bot-row-text"><strong>Elytra Pilot</strong><small>Flies you to your coords.</small></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="Base Alert" data-tag="Utility" data-icon="i-radar"
+                data-desc="Scouts and alerts you to bases."
+                data-holds="Compass, Spyglass">
+                <span class="bot-icon"><svg class="icon"><use href="#i-radar"/></svg></span>
+                <span class="bot-row-text"><strong>Base Alert</strong><small>Scouts and alerts you to bases.</small></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="Anchor Hunter" data-tag="Utility" data-icon="i-anchor"
+                data-desc="RTPs and mines respawn anchors."
+                data-holds="Respawn Anchor, Glowstone">
+                <span class="bot-icon"><svg class="icon"><use href="#i-anchor"/></svg></span>
+                <span class="bot-row-text"><strong>Anchor Hunter</strong><small>RTPs and mines respawn anchors.</small></span>
+              </button>
+              <button class="bot-row" type="button" role="tab" aria-selected="false"
+                data-name="Auto TPA" data-tag="Utility" data-icon="i-portal"
+                data-desc="Sends /tpahere from your trap."
+                data-holds="Ender Pearl, Chorus Fruit">
+                <span class="bot-icon"><svg class="icon"><use href="#i-portal"/></svg></span>
+                <span class="bot-row-text"><strong>Auto TPA</strong><small>Sends /tpahere from your trap.</small></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="bots-cta reveal">
+          <a class="btn btn-primary btn-md" href="#pricing">Get all 14 bots</a>
+          <p>All <strong>14</strong> bots in every plan. No add-ons.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= REVIEWS ================= -->
+    <section class="section reviews" id="reviews" aria-labelledby="reviews-title">
+      <div class="container reviews-grid">
+        <div class="reviews-aside reveal">
+          <h2 class="pixel-title" id="reviews-title">Loved by players.</h2>
+          <p class="section-sub left">Straight from the V+ community. Unedited.</p>
+          <a class="btn btn-secondary btn-md" href="#socials">
+            <svg class="icon"><use href="#i-discord"/></svg>
+            Read more on Discord
+          </a>
+        </div>
+
+        <div class="reviews-cards">
+          <article class="review card reveal" style="--d:0ms">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              <svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg>
+            </div>
+            <h3>LMAO I GOT LT3 ON MVTIERS USING THT BOT</h3>
+            <p>W CLIENT</p>
+            <footer><span>Anonymous</span><span class="sep">·</span><time datetime="2026-11-09">November 9, 2026</time></footer>
+          </article>
+
+          <article class="review card reveal" style="--d:90ms">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              <svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg>
+            </div>
+            <h3>One Of The Best Clients?</h3>
+            <p>V+ Client is a very good and suitable client since it has many good features like visuals and autobuilder. Not everything is perfect but for me it's the best out there to use.</p>
+            <footer><span>Anonymous</span><span class="sep">·</span><time datetime="2026-11-08">November 8, 2026</time></footer>
+          </article>
+
+          <article class="review card reveal" style="--d:180ms">
+            <div class="review-stars" aria-label="4 out of 5 stars">
+              <svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon is-empty"><use href="#i-star"/></svg>
+            </div>
+            <h3>Amazing Client</h3>
+            <p>I'm really happy with the V+ Client! Everything works great, and my experience has been amazing so far. The client is easy to use, and I'm very satisfied with it. I definitely recommend it to anyone looking for a great Minecraft client. Keep up the amazing work! 🔥</p>
+            <footer><span>Anonymous</span><span class="sep">·</span><time datetime="2026-11-04">November 4, 2026</time></footer>
+          </article>
+
+          <article class="review card reveal" style="--d:270ms">
+            <div class="review-stars" aria-label="5 out of 5 stars">
+              <svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg><svg class="icon"><use href="#i-star"/></svg>
+            </div>
+            <h3>V+ Client</h3>
+            <p>Honestly one of the best Minecraft clients I've used. The features are amazing, everything feels smooth, and the amount of work put into the client really shows. The automation and overall functionality are genuinely impressive. Highly recommend!</p>
+            <footer><span>Anonymous</span><span class="sep">·</span><time datetime="2026-11-03">November 3, 2026</time></footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIDEO-FREE SHOWCASE AREA ================= -->
+    <section class="section showcase" id="guides" aria-labelledby="showcase-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="pixel-title" id="showcase-title">Module walkthroughs.</h2>
+          <p class="section-sub">A quick look at what's inside V+.</p>
+        </div>
+
+        <div class="showcase-grid">
+          <article class="showcase-card card reveal" style="--d:0ms">
+            <div class="showcase-media showcase-media-client" aria-hidden="true">
+              <span class="showcase-chip">Showcase</span>
+              <div class="mini-gui">
+                <div class="mini-gui-bar"><span>V+ Modules</span><span class="mini-dots">···</span></div>
+                <div class="mini-gui-body">
+                  <div class="mini-gui-side">
+                    <span class="is-active">Combat</span><span>Visuals</span><span>Movement</span><span>Bots</span>
+                  </div>
+                  <div class="mini-gui-rows">
+                    <span><i></i>Auto Crystal<b></b></span>
+                    <span><i></i>Aim Assist<b class="on"></b></span>
+                    <span><i></i>Safe Anchor<b></b></span>
+                    <span><i></i>Silent Aim<b class="on"></b></span>
+                    <span><i></i>Auto Totem<b></b></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <h3>Full Client Showcase</h3>
+                <span class="showcase-sub">Every module, one clean interface.</span>
+              </div>
+              <span class="showcase-mark"><svg class="icon"><use href="#i-arrow-up"/></svg></span>
+            </div>
+          </article>
+
+          <article class="showcase-card card reveal" style="--d:90ms">
+            <div class="showcase-media showcase-media-update" aria-hidden="true">
+              <span class="showcase-chip">Update</span>
+              <div class="update-art">
+                <span class="update-v">V2</span>
+                <span class="update-glow"></span>
+                <span class="update-line">New bots · New themes · More polish</span>
+              </div>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <h3>V2 update is here</h3>
+                <span class="showcase-sub">More modules, more control.</span>
+              </div>
+              <span class="showcase-mark"><svg class="icon"><use href="#i-arrow-up"/></svg></span>
+            </div>
+          </article>
+
+          <article class="showcase-card card reveal" style="--d:180ms">
+            <div class="showcase-media showcase-media-guide" aria-hidden="true">
+              <span class="showcase-chip">Tutorial</span>
+              <div class="guide-art">
+                <span class="guide-panel p1"></span>
+                <span class="guide-panel p2"></span>
+                <span class="guide-cursor"></span>
+                <span class="guide-label">Config → Presets</span>
+              </div>
+            </div>
+            <div class="showcase-body">
+              <div>
+                <h3>GUI Walkthroughs</h3>
+                <span class="showcase-sub">Set up your config in minutes.</span>
+              </div>
+              <span class="showcase-mark"><svg class="icon"><use href="#i-arrow-up"/></svg></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PREMIUM INTERFACE ================= -->
+    <section class="section interface" aria-labelledby="interface-title">
+      <div class="interface-glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="pixel-title" id="interface-title">Premium interface.</h2>
+          <p class="section-sub">Toggle modules, tune settings and switch themes in one click.</p>
+        </div>
+
+        <div class="interface-stage reveal">
+          <span class="float-chip float-chip-1">Themes</span>
+          <span class="float-chip float-chip-2">Configs</span>
+          <span class="float-chip float-chip-3">Keybinds</span>
+
+          <div class="gui-window gui-large" aria-hidden="true">
+            <div class="gui-topbar">
+              <span class="gui-app">V<span>+</span></span>
+              <span class="gui-greeting">Modules <b>Combat</b></span>
+              <span class="gui-clock">04:56</span>
+              <span class="gui-topicons">
+                <svg class="icon"><use href="#i-search"/></svg>
+                <svg class="icon"><use href="#i-grid"/></svg>
+              </span>
+            </div>
+            <div class="gui-layout">
+              <aside class="gui-side">
+                <div class="gui-wordmark">V<span>+</span></div>
+                <div class="gui-side-label">Modules</div>
+                <ul class="gui-side-list">
+                  <li class="is-active"><span class="gi"><svg class="icon"><use href="#i-sword"/></svg></span>Combat</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-wings"/></svg></span>Movement</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-donut"/></svg></span>DonutSMP</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-eye"/></svg></span>Visuals</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-sparkle"/></svg></span>Misc</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-radar"/></svg></span>Network</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-crown"/></svg></span>Bots</li>
+                </ul>
+                <div class="gui-side-label">General</div>
+                <ul class="gui-side-list">
+                  <li><span class="gi"><svg class="icon"><use href="#i-grid"/></svg></span>Settings</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-check"/></svg></span>Configs</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-sparkle"/></svg></span>Theme</li>
+                  <li><span class="gi"><svg class="icon"><use href="#i-user"/></svg></span>Socials</li>
+                </ul>
+                <div class="gui-profile">
+                  <span class="gui-avatar">V+</span>
+                  <span>VPLUS.GG<small>Test build</small></span>
+                </div>
+              </aside>
+
+              <div class="gui-mainpane">
+                <div class="gui-search"><svg class="icon"><use href="#i-search"/></svg><span>Search modules...</span><kbd>⌘K</kbd></div>
+                <div class="gui-cols">
+                  <div class="gui-col">
+                    <div class="gui-mod"><span>Auto Inventory Totems <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Auto Crystal <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Auto Totem <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Aim Assist <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle is-on"></span></div>
+                    <div class="gui-mod"><span>Reach <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>AutoCart <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle is-on"></span></div>
+                    <div class="gui-mod"><span>Trigger Bot <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Trident Assist <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Auto Anchor <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle is-on"></span></div>
+                  </div>
+                  <div class="gui-col">
+                    <div class="gui-mod"><span>Anchor Macro <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Fight Recorder <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle is-on"></span></div>
+                    <div class="gui-mod"><span>Crystal Optimizer <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Silent Aim <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle is-on"></span></div>
+                    <div class="gui-mod"><span>AutoTrap <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>AutoClicker <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Hit Select <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Safe Anchor <i class="mdot"></i></span><span class="kbd">Keybind: ···</span><span class="toggle"></span></div>
+                    <div class="gui-mod"><span>Lag Range <i class="mdot is-red"></i></span><span class="kbd">Keybind: ···</span><span class="toggle is-on"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LAUNCHER ================= -->
+    <section class="section launcher" aria-labelledby="launcher-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 class="pixel-title" id="launcher-title">One-click launcher.</h2>
+          <p class="section-sub">Sign in, pick your version, hit launch. Updates and changelogs come straight to you.</p>
+        </div>
+
+        <div class="launcher-wrap reveal">
+          <div class="launcher-window" aria-hidden="true">
+            <div class="launcher-top">
+              <span class="launcher-brand">V<span>+</span></span>
+              <div class="launcher-tabs">
+                <span class="is-active">Home</span><span>Logs</span><span>Crash log</span><span>Settings</span>
+              </div>
+              <span class="launcher-lang">English ▾</span>
+            </div>
+            <div class="launcher-body">
+              <aside class="launcher-side">
+                <div class="launcher-search"><svg class="icon"><use href="#i-search"/></svg> Browse mods</div>
+                <div class="launcher-side-note">V+ Launcher</div>
+              </aside>
+              <div class="launcher-main">
+                <div class="launcher-update">↻ Launcher update ready</div>
+                <div class="launcher-changelog">
+                  <div class="changelog-head"><strong>v2.0.3</strong><span>Latest</span></div>
+                  <ul>
+                    <li>New update sonions</li>
+                    <li>Added Bloodhound Base Finder <b>NEW</b></li>
+                    <li>Added Mace PvP Bot <b>NEW</b></li>
+                    <li>Added UHC PvP Bot <b>NEW</b></li>
+                    <li>Added Tree Farmer <b>NEW</b></li>
+                    <li>Added CrazyVisuals <b>NEW</b></li>
+                    <li>Added Motion Blur <b>NEW</b></li>
+                    <li>AutoBuilder fast airplace, map art 10% faster</li>
+                    <li>AutoAreaMiner now mines with human aim + random patterns</li>
+                  </ul>
+                </div>
+                <div class="launcher-controls">
+                  <span class="launch-btn">LAUNCH</span>
+                  <span class="launcher-folder"><svg class="icon"><use href="#i-grid"/></svg></span>
+                  <span class="launcher-version">2.0.3 <svg class="icon"><use href="#i-chevron"/></svg></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="launcher-splash" aria-hidden="true">
+            <span class="splash-logo">V<span>+</span></span>
+            <span class="splash-bar"><i></i></span>
+            <span class="splash-note">Loading modules…</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STATS ================= -->
+    <section class="section stats" aria-labelledby="stats-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Community</span>
+          <h2 class="pixel-title" id="stats-title">Trusted by players.</h2>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card card reveal" style="--d:0ms">
+            <span class="stat-label"><span class="live-dot"></span> Online now</span>
+            <strong class="stat-num" data-count="1036">0</strong>
+            <span class="stat-sub">players active</span>
+          </div>
+          <div class="stat-card card reveal" style="--d:90ms">
+            <span class="stat-label"><svg class="icon"><use href="#i-user"/></svg> Total users</span>
+            <strong class="stat-num" data-count="7692">0</strong>
+            <span class="stat-sub">registered accounts</span>
+          </div>
+          <div class="stat-card card reveal" style="--d:180ms">
+            <span class="stat-label"><svg class="icon"><use href="#i-download"/></svg> Downloads</span>
+            <strong class="stat-num" data-count="7000" data-suffix="+">0</strong>
+            <span class="stat-sub">client downloads</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PRICING ================= -->
+    <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
+      <div class="pricing-glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Pricing</span>
+          <h2 class="pixel-title" id="pricing-title">Simple, honest pricing.</h2>
+          <p class="section-sub">No hidden fees. Instant access.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card card reveal" style="--d:0ms">
+            <header>
+              <h3>Monthly</h3>
+              <p>Full client, billed monthly.</p>
+            </header>
+            <div class="price"><span class="currency">$</span><span class="amount">14.99</span><span class="period">/mo</span></div>
+            <a class="btn btn-secondary btn-md price-btn" href="#">Subscribe monthly</a>
+            <ul class="price-list">
+              <li><svg class="icon"><use href="#i-check"/></svg> Full access to all modules</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Automatic updates every patch</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> DonutSMP optimized configs</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Discord community &amp; support</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Auto-renewal, cancel anytime</li>
+              <li class="is-negative"><svg class="icon"><use href="#i-x"/></svg> No lifetime access</li>
+            </ul>
+            <p class="price-foot">Renews monthly. Cancel anytime.</p>
+          </article>
+
+          <article class="price-card card is-popular reveal" style="--d:90ms">
+            <span class="popular-badge">Most popular</span>
+            <header>
+              <h3>Lifetime</h3>
+              <p>One payment. Forever.</p>
+            </header>
+            <div class="price"><span class="currency">$</span><span class="amount">29.99</span><span class="period">once</span></div>
+            <a class="btn btn-primary btn-md price-btn btn-glance" href="#">Get lifetime access</a>
+            <ul class="price-list">
+              <li><svg class="icon"><use href="#i-check"/></svg> Full access to all modules</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Automatic updates every patch</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> DonutSMP optimized configs</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Discord community &amp; support</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Priority support response</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> Early access to new features</li>
+              <li><svg class="icon"><use href="#i-check"/></svg> No recurring payments, ever</li>
+            </ul>
+            <p class="price-foot">One-time payment. All future updates included.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COMMUNITY ================= -->
+    <section class="section socials" id="socials" aria-labelledby="socials-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <a class="social-pill" href="#socials"><svg class="icon"><use href="#i-tiktok"/></svg> @vplusclient on TikTok</a>
+          <h2 class="pixel-title" id="socials-title">Our community.</h2>
+          <p class="section-sub">Real players. Real feedback. Real support.</p>
+          <div class="social-stats">
+            <div><strong>13.7K</strong><span>Followers</span></div>
+            <div><strong>150.8K</strong><span>Likes</span></div>
+            <div><strong>73</strong><span>Posts</span></div>
+          </div>
+        </div>
+
+        <div class="community-grid">
+          <div class="community-chat card reveal" aria-label="Community chat preview">
+            <div class="chat-head"><svg class="icon"><use href="#i-discord"/></svg> <span>#general</span><span class="chat-online">1,036 online</span></div>
+            <div class="chat-body">
+              <div class="chat-msg">
+                <span class="chat-avatar a1">K</span>
+                <div><span class="chat-name">kryptik <time>04:41</time></span><p>anyone else hitting LT3 with the mace bot? this is nuts</p></div>
+              </div>
+              <div class="chat-msg">
+                <span class="chat-avatar a2">M</span>
+                <div><span class="chat-name">mellow <time>04:43</time></span><p>the new GUI themes are so clean, been waiting for this</p></div>
+              </div>
+              <div class="chat-msg">
+                <span class="chat-avatar a3">S</span>
+                <div><span class="chat-name">sable <time>04:45</time></span><p>support helped me reset my HWID in like 5 minutes. W staff</p></div>
+              </div>
+            </div>
+            <div class="chat-input"><span>Message #general</span><span class="chat-send">↵</span></div>
+          </div>
+
+          <div class="community-cta card reveal" style="--d:90ms">
+            <span class="community-badge"><svg class="icon"><use href="#i-sparkle"/></svg> Join 13,700+ players</span>
+            <h3>Built with the community.</h3>
+            <p>Get configs, ask questions and hang out with other V+ users. Our team is online around the clock.</p>
+            <div class="community-actions">
+              <a class="btn btn-primary btn-md" href="#"><svg class="icon"><use href="#i-discord"/></svg> Join Discord</a>
+              <a class="btn btn-secondary btn-md" href="#"><svg class="icon"><use href="#i-tiktok"/></svg> Follow @vplusclient</a>
+            </div>
+            <div class="community-socials">
+              <a href="#" aria-label="YouTube"><svg class="icon"><use href="#i-youtube"/></svg></a>
+              <a href="#" aria-label="TikTok"><svg class="icon"><use href="#i-tiktok"/></svg></a>
+              <a href="#" aria-label="Discord"><svg class="icon"><use href="#i-discord"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TEAM ================= -->
+    <section class="section team" aria-labelledby="team-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">The Team</span>
+          <h2 class="pixel-title" id="team-title">Who's behind V+.</h2>
+          <p class="section-sub">Two players who built the client they wanted.</p>
+        </div>
+
+        <div class="team-grid">
+          <article class="team-card card reveal" style="--d:0ms">
+            <div class="team-art team-art-1" aria-hidden="true">
+              <span class="team-avatar">V</span>
+              <span class="team-ring"></span>
+            </div>
+            <span class="team-role">Founder &amp; Developer</span>
+            <h3>Vex</h3>
+            <p>Every module and the engine under the hood.</p>
+          </article>
+          <article class="team-card card reveal" style="--d:90ms">
+            <div class="team-art team-art-2" aria-hidden="true">
+              <span class="team-avatar">N</span>
+              <span class="team-ring"></span>
+            </div>
+            <span class="team-role">Co-Founder &amp; Operations</span>
+            <h3>Nova</h3>
+            <p>Management, media, staff and business inquiries.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-inner">
+        <div class="section-head reveal">
+          <h2 class="pixel-title" id="faq-title">Frequently asked <span class="accent-shimmer">questions</span>.</h2>
+          <p class="section-sub">Everything you need to know before you start.</p>
+        </div>
+
+        <div class="faq-list reveal">
+          <details class="faq-item">
+            <summary>Is V+ safe to use?<span class="faq-plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-answer"><p>V+ is built with safety in mind and bypasses are updated regularly. That said, using any client on a server carries risk — use it at your own discretion and preferably on an alt account.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>What servers does V+ support?<span class="faq-plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-answer"><p>V+ is optimized for DonutSMP and other anarchy / SMP servers running Minecraft 1.21 and newer. Many modules also work on practice and PvP servers.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How do I get started after purchase?<span class="faq-plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-answer"><p>You'll get instant access to your dashboard after checkout. Download the V+ launcher, sign in with your key, pick your Minecraft version and hit launch. Setup takes about a minute.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Do you offer refunds?<span class="faq-plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-answer"><p>Yes. If V+ isn't for you, contact us within 24 hours of purchase for a full refund. See the refund policy for the details.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How often is V+ updated?<span class="faq-plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-answer"><p>We ship updates weekly, and whenever Minecraft or a major server changes something that affects the client. Your launcher keeps itself up to date automatically.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Can I use V+ on multiple devices?<span class="faq-plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-answer"><p>Your license is tied to one HWID (computer). Need to switch? Request a free HWID reset in our Discord and our team will sort it out.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>What about anti-cheat detection?<span class="faq-plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-answer"><p>Our bypasses are maintained continuously and our configs use human-like randomization. No client can promise zero risk, so we recommend subtle settings on accounts you care about.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>What are the system requirements?<span class="faq-plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-answer"><p>Windows 10 or 11, Java 21, Minecraft Java Edition 1.21+ with Fabric, and at least 4 GB of RAM allocated to the game. A dedicated GPU is recommended for the visual modules.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Is there customer support if I run into issues?<span class="faq-plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-answer"><p>Yes — our Discord support is open 24/7. Open a ticket and a team member will help you with installation, configs or licensing.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>How is V+ different from other clients?<span class="faq-plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-answer"><p>V+ combines combat, utility bots and visuals in one launcher with no add-ons or upsells. Every plan includes all 14 bots, all modules and every future update.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FINAL CTA ================= -->
+    <section class="section final-cta" aria-labelledby="cta-title">
+      <div class="final-glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="final-inner reveal">
+          <h2 class="pixel-title" id="cta-title">Ready to dominate?</h2>
+          <p>One payment. Lifetime access. Instant setup.</p>
+          <div class="final-actions">
+            <a class="btn btn-primary btn-lg btn-glance" href="#pricing">Get lifetime access</a>
+            <a class="btn btn-secondary btn-lg" href="#socials"><svg class="icon"><use href="#i-discord"/></svg> Join Discord</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-watermark" aria-hidden="true">
+      <svg viewBox="0 0 560 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 26L180 372h100L436 26" stroke="currentColor" stroke-width="12" stroke-linejoin="round"/>
+        <path d="M492 54v100M442 104h100" stroke="currentColor" stroke-width="12" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#top" aria-label="V+ home">
+            <span class="brand-mark" aria-hidden="true">V<sup>+</sup></span>
+            <span class="brand-word">V<span class="plus" aria-hidden="true"></span></span>
+          </a>
+          <p>Built by players, for players.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Discord"><svg class="icon"><use href="#i-discord"/></svg></a>
+            <a href="#" aria-label="TikTok"><svg class="icon"><use href="#i-tiktok"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg class="icon"><use href="#i-youtube"/></svg></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#top">V+ Client</a>
+          <a href="#features">Features</a>
+          <a href="#bots">Bots</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#guides">Guides</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Account</h4>
+          <a href="#pricing">Log in</a>
+          <a href="#pricing">Create account</a>
+          <a href="#pricing">Dashboard</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#top">About</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#socials">Discord</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Refunds</a>
+          <a href="#">EULA</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>All product names, logos, and trademarks are the property of their respective owners.</p>
+        <p>© 2026 V+ GROUP. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
